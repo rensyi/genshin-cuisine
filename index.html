@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Genshin Cuisine - A themed local culinary experience bringing realistic, freshly prepared versions of classic Teyvat meals to life for local diners and food enthusiasts.">
+  <title>Genshin Cuisine | A Taste of Teyvat Delivered</title>
+
+  <!-- Google Fonts Rubik Family -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+  <!-- Relative File Linking -->
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+
+  <!-- 1. Header & Navigation Landmark -->
+  <header class="site-header">
+    <nav class="primary-navbar" aria-label="Main Navigation">
+      <a href="#home" class="brand-logo" aria-label="Genshin Cuisine Home">
+        <svg class="brand-svg" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" focusable="false">
+          <path d="M4 14c0 8 5.5 12 12 12s12-4 12-12H4z" fill="#5C1D17"/>
+          <path d="M2 14h28" stroke="#D49B41" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M10 8c1-2 2-3 2-5M16 8c1-2 2-3 2-5M22 8c1-2 2-3 2-5" stroke="#D49B41" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <circle cx="16" cy="19" r="3" fill="#D49B41"/>
+        </svg>
+        <span class="brand-text">Genshin Cuisine</span>
+      </a>
+
+      <!-- Functional Mobile Hamburger Toggle with Explicit ARIA -->
+      <button type="button" class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav-menu">
+        <svg class="hamburger-svg" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false">
+          <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <!-- Primary Navigation Links & Region Navigation Links -->
+      <ul id="primary-nav-menu" class="nav-links">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#menu" class="nav-link">Menu</a></li>
+        <li class="nav-region-group">
+          <span class="nav-region-label">Regions:</span>
+          <a href="#menu" class="nav-sub-link" data-nav-region="mondstadt" aria-label="Filter menu to Mondstadt dishes">Mondstadt</a>
+          <a href="#menu" class="nav-sub-link" data-nav-region="liyue" aria-label="Filter menu to Liyue dishes">Liyue</a>
+          <a href="#menu" class="nav-sub-link" data-nav-region="inazuma" aria-label="Filter menu to Inazuma dishes">Inazuma</a>
+        </li>
+        <li><a href="#order-tracker" class="nav-link">Order Tracker</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <!-- Interactive Header Cart Button with PHP Currency -->
+      <button type="button" class="nav-cart-btn" aria-label="View shopping cart with 0 items totaling ₱0.00" id="header-cart-button">
+        <svg class="icon-cart-svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+          <path d="M6 6h15l-1.5 9h-12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="9" cy="20" r="1.5" fill="currentColor"/>
+          <circle cx="18" cy="20" r="1.5" fill="currentColor"/>
+          <path d="M2 3h3l1.5 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="cart-text">Cart</span>
+        <span id="header-cart-count" class="cart-badge" aria-live="polite">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Main Landmark -->
+  <main class="main-content">
+
+    <!-- 2. Hero Section -->
+    <section id="home" class="hero-section" aria-labelledby="hero-title">
+      <header class="hero-header">
+        <p class="hero-eyebrow">Local Themed Culinary Experience</p>
+        <h1 id="hero-title" class="hero-title">A Taste of Teyvat Delivered</h1>
+      </header>
+      <p class="hero-pitch">
+        Step into an extraordinary gastronomic journey bringing the iconic delicacies of Teyvat to your dining table. Inspired by the rich traditions and aesthetics of Liyue Harbor, our kitchen prepares realistic, freshly simmered, roasted, and rolled versions of classic in-game meals crafted exclusively for local food enthusiasts and hungry adventurers.
+      </p>
+      <p class="hero-actions">
+        <!-- Prominent 'Order Now (Mora Marketplace)' CTA Button -->
+        <a href="#menu" class="primary-cta-btn" aria-label="Order Now from the Mora Marketplace">Order Now (Mora Marketplace)</a>
+        <a href="#order-tracker" class="secondary-cta-btn" aria-label="View live Mora Cart Calculator">Order Tracker</a>
+      </p>
+    </section>
+
+    <!-- 3. Core Content Section (Products Showcase - 5 Distinct Dishes) -->
+    <section id="menu" class="menu-section" aria-labelledby="menu-title">
+      <header class="section-intro">
+        <h2 id="menu-title" class="section-title">Themed Culinary Showcase</h2>
+        <p class="section-lead">Explore freshly prepared dishes crafted with authentic culinary techniques, nuanced flavor profiles, and wholesome local ingredients.</p>
+      </header>
+
+      <!-- Dishes Showcase Grid -->
+      <div class="dishes-grid" id="dishes-container">
+
+        <!-- 1. Sweet Madame (Mondstadt) - ₱380.00 -->
+        <article class="dish-card" data-region="mondstadt" aria-labelledby="dish-sweet-madame-name">
+          <figure class="dish-figure">
+            <img src="./assets/sweet-madame.png" alt="Whole honey-glazed roasted chicken with glistening amber crispy skin, rested on an earthen platter garnished with edible red sweet flowers and fresh herbs" class="dish-image" width="400" height="300" loading="lazy">
+            <figcaption class="dish-region-badge">Mondstadt</figcaption>
+          </figure>
+          <header class="dish-card-header">
+            <h3 id="dish-sweet-madame-name" class="dish-name">Sweet Madame</h3>
+            <div class="rarity-badge" role="img" aria-label="Culinary Star Rating: 4.9 out of 5 Stars">
+              <span class="stars-icons" aria-hidden="true">
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+              </span>
+              <span class="rating-number">4.9</span>
+            </div>
+          </header>
+          <p class="dish-description">Honey-glazed roasted whole chicken with a sweet flower-infused reduction sauce.</p>
+          <p class="dish-flavor-notes"><strong class="flavor-title">Flavor Notes:</strong> Savory-sweet caramelized glaze, floral honey sweetness, succulent tender meat with crisp skin.</p>
+          <section class="dish-ingredients-container" aria-label="Ingredients for Sweet Madame">
+            <h4 class="ingredients-header">Real Culinary Ingredients:</h4>
+            <ul class="ingredients-list">
+              <li class="ingredient-item">Whole Roaster Chicken</li>
+              <li class="ingredient-item">Wildflower Honey</li>
+              <li class="ingredient-item">Sweet Flower Petals</li>
+              <li class="ingredient-item">Fresh Thyme & Butter</li>
+            </ul>
+          </section>
+          <footer class="dish-card-footer">
+            <p class="dish-mora-price" aria-label="Price: ₱380.00">
+              <span class="currency-symbol">₱</span>
+              <span class="price-number">380.00</span>
+            </p>
+            <button type="button" class="add-to-cart-btn" aria-label="Add Sweet Madame to cart for ₱380.00" data-dish-id="sweet-madame" data-dish-name="Sweet Madame" data-dish-price="380.00" data-dish-region="mondstadt">
+              Add to Cart
+            </button>
+          </footer>
+        </article>
+
+        <!-- 2. Adeptus' Temptation (Liyue) - ₱650.00 -->
+        <article class="dish-card" data-region="liyue" aria-labelledby="dish-adeptus-temptation-name">
+          <figure class="dish-figure">
+            <img src="./assets/adeptus-temptation.png" alt="Ornate porcelain soup bowl simmering with premium abalone, tender prawns, cured ham slices, and wild matsutake mushrooms in a glistening golden broth" class="dish-image" width="400" height="300" loading="lazy">
+            <figcaption class="dish-region-badge">Liyue</figcaption>
+          </figure>
+          <header class="dish-card-header">
+            <h3 id="dish-adeptus-temptation-name" class="dish-name">Adeptus' Temptation</h3>
+            <div class="rarity-badge" role="img" aria-label="Culinary Star Rating: 5.0 out of 5 Stars">
+              <span class="stars-icons" aria-hidden="true">
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+              </span>
+              <span class="rating-number">5.0</span>
+            </div>
+          </header>
+          <p class="dish-description">Premium slow-simmered seafood and meat soup featuring tender shrimp, savory cured ham, and matsutake mushrooms.</p>
+          <p class="dish-flavor-notes"><strong class="flavor-title">Flavor Notes:</strong> Rich umami complexity, velvety collagen broth, smoky cured notes with earthy forest aromas.</p>
+          <section class="dish-ingredients-container" aria-label="Ingredients for Adeptus' Temptation">
+            <h4 class="ingredients-header">Real Culinary Ingredients:</h4>
+            <ul class="ingredients-list">
+              <li class="ingredient-item">Artisanal Cured Ham</li>
+              <li class="ingredient-item">Black Tiger Shrimp</li>
+              <li class="ingredient-item">Lump Crab Meat</li>
+              <li class="ingredient-item">Wild Matsutake Mushrooms</li>
+            </ul>
+          </section>
+          <footer class="dish-card-footer">
+            <p class="dish-mora-price" aria-label="Price: ₱650.00">
+              <span class="currency-symbol">₱</span>
+              <span class="price-number">650.00</span>
+            </p>
+            <button type="button" class="add-to-cart-btn" aria-label="Add Adeptus' Temptation to cart for ₱650.00" data-dish-id="adeptus-temptation" data-dish-name="Adeptus' Temptation" data-dish-price="650.00" data-dish-region="liyue">
+              Add to Cart
+            </button>
+          </footer>
+        </article>
+
+        <!-- 3. Tricolor Dango (Inazuma) - ₱180.00 -->
+        <article class="dish-card" data-region="inazuma" aria-labelledby="dish-tricolor-dango-name">
+          <figure class="dish-figure">
+            <img src="./assets/tricolor-dango.png" alt="Skewered Japanese mochi dango in pastel cherry blossom pink, creamy white, and vibrant matcha green hues served on a dark bamboo lacquer plate" class="dish-image" width="400" height="300" loading="lazy">
+            <figcaption class="dish-region-badge">Inazuma</figcaption>
+          </figure>
+          <header class="dish-card-header">
+            <h3 id="dish-tricolor-dango-name" class="dish-name">Tricolor Dango</h3>
+            <div class="rarity-badge" role="img" aria-label="Culinary Star Rating: 4.8 out of 5 Stars">
+              <span class="stars-icons" aria-hidden="true">
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+              </span>
+              <span class="rating-number">4.8</span>
+            </div>
+          </header>
+          <p class="dish-description">Chewy, sweet glutinous rice dumplings flavored with premium matcha, sweet milk, and a hint of sakura blossoms.</p>
+          <p class="dish-flavor-notes"><strong class="flavor-title">Flavor Notes:</strong> Soft floral sakura sweetness, velvety condensed milk, and earthy grassy matcha harmony.</p>
+          <section class="dish-ingredients-container" aria-label="Ingredients for Tricolor Dango">
+            <h4 class="ingredients-header">Real Culinary Ingredients:</h4>
+            <ul class="ingredients-list">
+              <li class="ingredient-item">Glutinous Rice Flour (Mochiko)</li>
+              <li class="ingredient-item">Uji Matcha Powder</li>
+              <li class="ingredient-item">Sakura Blossom Essence</li>
+              <li class="ingredient-item">Condensed Sweet Milk</li>
+            </ul>
+          </section>
+          <footer class="dish-card-footer">
+            <p class="dish-mora-price" aria-label="Price: ₱180.00">
+              <span class="currency-symbol">₱</span>
+              <span class="price-number">180.00</span>
+            </p>
+            <button type="button" class="add-to-cart-btn" aria-label="Add Tricolor Dango to cart for ₱180.00" data-dish-id="tricolor-dango" data-dish-name="Tricolor Dango" data-dish-price="180.00" data-dish-region="inazuma">
+              Add to Cart
+            </button>
+          </footer>
+        </article>
+
+        <!-- 4. Matsutake Meat Rolls (Liyue) - ₱320.00 -->
+        <article class="dish-card" data-region="liyue" aria-labelledby="dish-matsutake-rolls-name">
+          <figure class="dish-figure">
+            <img src="./assets/matsutake-meat-rolls.png" alt="Sautéed wild matsutake mushrooms tightly wrapped in thinly sliced, seared prime beef strips glazed with savory tare sauce on a warm ceramic dish" class="dish-image" width="400" height="300" loading="lazy">
+            <figcaption class="dish-region-badge">Liyue</figcaption>
+          </figure>
+          <header class="dish-card-header">
+            <h3 id="dish-matsutake-rolls-name" class="dish-name">Matsutake Meat Rolls</h3>
+            <div class="rarity-badge" role="img" aria-label="Culinary Star Rating: 4.9 out of 5 Stars">
+              <span class="stars-icons" aria-hidden="true">
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+              </span>
+              <span class="rating-number">4.9</span>
+            </div>
+          </header>
+          <p class="dish-description">Sautéed wild mushrooms tightly wrapped in thinly sliced, perfectly seared premium beef strips.</p>
+          <p class="dish-flavor-notes"><strong class="flavor-title">Flavor Notes:</strong> Rich savory char, woodsy pine aroma from roasted matsutake, balanced with seasoned soy butter.</p>
+          <section class="dish-ingredients-container" aria-label="Ingredients for Matsutake Meat Rolls">
+            <h4 class="ingredients-header">Real Culinary Ingredients:</h4>
+            <ul class="ingredients-list">
+              <li class="ingredient-item">Thinly Sliced Prime Beef</li>
+              <li class="ingredient-item">Fresh Wild Matsutake</li>
+              <li class="ingredient-item">Toasted Sesame Oil</li>
+              <li class="ingredient-item">Aged Soy Glaze</li>
+            </ul>
+          </section>
+          <footer class="dish-card-footer">
+            <p class="dish-mora-price" aria-label="Price: ₱320.00">
+              <span class="currency-symbol">₱</span>
+              <span class="price-number">320.00</span>
+            </p>
+            <button type="button" class="add-to-cart-btn" aria-label="Add Matsutake Meat Rolls to cart for ₱320.00" data-dish-id="matsutake-meat-rolls" data-dish-name="Matsutake Meat Rolls" data-dish-price="320.00" data-dish-region="liyue">
+              Add to Cart
+            </button>
+          </footer>
+        </article>
+
+        <!-- 5. Mint Jelly (Mondstadt) - ₱120.00 -->
+        <article class="dish-card" data-region="mondstadt" aria-labelledby="dish-mint-jelly-name">
+          <figure class="dish-figure">
+            <img src="./assets/mint-jelly.png" alt="Crystal clear, emerald green dessert jelly infused with fresh spearmint and garnished with a lemon twist on a translucent glass saucer" class="dish-image" width="400" height="300" loading="lazy">
+            <figcaption class="dish-region-badge">Mondstadt</figcaption>
+          </figure>
+          <header class="dish-card-header">
+            <h3 id="dish-mint-jelly-name" class="dish-name">Mint Jelly</h3>
+            <div class="rarity-badge" role="img" aria-label="Culinary Star Rating: 4.8 out of 5 Stars">
+              <span class="stars-icons" aria-hidden="true">
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+                <svg class="star-svg filled" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="#D49B41" stroke="#B37A24" stroke-width="1"/></svg>
+              </span>
+              <span class="rating-number">4.8</span>
+            </div>
+          </header>
+          <p class="dish-description">Refreshing, vibrant green dessert jelly infused with fresh garden mint and light citrus undertones.</p>
+          <p class="dish-flavor-notes"><strong class="flavor-title">Flavor Notes:</strong> Crisp minty chill, zesty citrus lift, cooling and silky-smooth texture cleansing the palate.</p>
+          <section class="dish-ingredients-container" aria-label="Ingredients for Mint Jelly">
+            <h4 class="ingredients-header">Real Culinary Ingredients:</h4>
+            <ul class="ingredients-list">
+              <li class="ingredient-item">Fresh Garden Mint Leaves</li>
+              <li class="ingredient-item">Pure Mountain Spring Water</li>
+              <li class="ingredient-item">Organic Agar-Agar</li>
+              <li class="ingredient-item">Calamansi Citrus Juice</li>
+            </ul>
+          </section>
+          <footer class="dish-card-footer">
+            <p class="dish-mora-price" aria-label="Price: ₱120.00">
+              <span class="currency-symbol">₱</span>
+              <span class="price-number">120.00</span>
+            </p>
+            <button type="button" class="add-to-cart-btn" aria-label="Add Mint Jelly to cart for ₱120.00" data-dish-id="mint-jelly" data-dish-name="Mint Jelly" data-dish-price="120.00" data-dish-region="mondstadt">
+              Add to Cart
+            </button>
+          </footer>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 4. Interactive Feature (Dynamic Region Filter Toggle & Live Mora Cart Calculator in ₱ PHP) -->
+    <section id="order-tracker" class="interactive-component-container" aria-labelledby="tracker-title">
+      <header class="tracker-header">
+        <h2 id="tracker-title" class="section-title">Regional Navigation & Live Mora Calculator</h2>
+        <p class="section-lead">Sort menu offerings across Mondstadt, Liyue, and Inazuma, and watch your order tally update in real-time local currency (₱ PHP).</p>
+      </header>
+
+      <!-- Dynamic Region Filter Toggle Shell with Explicit ARIA -->
+      <nav class="region-navigation-shell" aria-label="Regional cuisine navigation filter">
+        <h3 class="filter-shell-title">Filter by Region:</h3>
+        <ul class="region-filter-tabs" role="tablist">
+          <li role="presentation">
+            <button type="button" class="region-tab active" role="tab" aria-selected="true" aria-controls="dishes-container" aria-label="Filter menu items by All Regions" data-region="all" aria-pressed="true">
+              All Regions
+            </button>
+          </li>
+          <li role="presentation">
+            <button type="button" class="region-tab" role="tab" aria-selected="false" aria-controls="dishes-container" aria-label="Filter menu items by Mondstadt region" data-region="mondstadt" aria-pressed="false">
+              Mondstadt
+            </button>
+          </li>
+          <li role="presentation">
+            <button type="button" class="region-tab" role="tab" aria-selected="false" aria-controls="dishes-container" aria-label="Filter menu items by Liyue region" data-region="liyue" aria-pressed="false">
+              Liyue
+            </button>
+          </li>
+          <li role="presentation">
+            <button type="button" class="region-tab" role="tab" aria-selected="false" aria-controls="dishes-container" aria-label="Filter menu items by Inazuma region" data-region="inazuma" aria-pressed="false">
+              Inazuma
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sticky Live Mora Cart Calculator Widget with Dynamic Controls in ₱ PHP -->
+      <aside class="mora-order-summary-widget sticky-widget" aria-label="Live Mora Order Summary and Cart Calculator">
+        <header class="widget-header">
+          <h3 class="widget-title">Mora Cart Calculator</h3>
+          <span class="widget-badge-status" aria-hidden="true">
+            <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false" fill="currentColor">
+              <circle cx="8" cy="8" r="6" />
+            </svg>
+            Live Calculation
+          </span>
+        </header>
+
+        <!-- Dynamic Itemized Cart Tracker -->
+        <div class="cart-items-container" id="cart-items-container" aria-live="polite">
+          <p class="cart-empty-message" id="cart-empty-message">No dishes selected yet. Add dishes from the menu above to calculate your order.</p>
+          <ul class="cart-items-list" id="cart-items-list" aria-label="Selected menu dishes list"></ul>
+        </div>
+
+        <p class="summary-row">
+          <span class="summary-label">Selected Dishes:</span>
+          <span id="cart-item-count" class="summary-value" aria-live="polite">0</span>
+          <span class="summary-unit">items</span>
+        </p>
+        <p class="summary-row">
+          <span class="summary-label">Real-Time Total (PHP):</span>
+          <span class="mora-tally-wrapper">
+            <span class="currency-symbol">₱</span>
+            <span id="cart-total-price" class="summary-value mora-highlight" aria-live="polite">0.00</span>
+          </span>
+        </p>
+        <footer class="widget-actions">
+          <button type="button" class="btn-checkout" aria-label="Confirm food delivery order and dispatch courier">
+            Confirm Delivery Order
+          </button>
+          <button type="button" class="btn-clear-cart" aria-label="Reset shopping cart calculator selection">
+            Clear Selection
+          </button>
+        </footer>
+      </aside>
+    </section>
+
+    <!-- 5. Contact / CTA Section (Catering & Direct Delivery Requests) -->
+    <section id="contact" class="contact-section" aria-labelledby="contact-title">
+      <header class="section-intro">
+        <h2 id="contact-title" class="section-title">Catering Inquiries & Direct Delivery</h2>
+        <p class="section-lead">Planning a corporate banquet, party catering, or home feast? Transmit your delivery preferences and custom catering inquiries directly to our culinary brigade.</p>
+      </header>
+
+      <!-- Themed Contact Form Grid Matching Input Types -->
+      <form class="catering-form-grid" action="#" method="POST" aria-label="Catering and Banquet Delivery Request Form">
+        <p class="form-group">
+          <label for="client-name" class="form-label">Client / Diner Name</label>
+          <input type="text" id="client-name" name="name" class="form-input" required placeholder="e.g., Lumine or Aether" autocomplete="name">
+        </p>
+        <p class="form-group">
+          <label for="client-email" class="form-label">Email Address</label>
+          <input type="email" id="client-email" name="email" class="form-input" required placeholder="diner@genshincuisine.local" autocomplete="email">
+        </p>
+        <p class="form-group full-width">
+          <label for="delivery-address" class="form-label">Delivery Street Address</label>
+          <input type="text" id="delivery-address" name="address" class="form-input" required placeholder="e.g., Unit 4B, Jade Pavilion Ave., Metro District" autocomplete="street-address">
+        </p>
+        <p class="form-group full-width">
+          <label for="inquiry-description" class="form-label">Catering Request & Order Details</label>
+          <textarea id="inquiry-description" name="inquiry" class="form-textarea" rows="5" required placeholder="Specify estimated guest headcount, dietary requirements, spice level preferences, or preferred delivery timing..."></textarea>
+        </p>
+        <p class="form-actions full-width">
+          <button type="submit" class="btn-submit-inquiry" aria-label="Submit catering and delivery order request">
+            Submit Order / Catering Request
+          </button>
+        </p>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- 6. Footer Landmark -->
+  <footer class="site-footer" aria-label="Site Footer">
+    <section class="footer-brand-summary" aria-label="About Genshin Cuisine">
+      <h3 class="footer-title">
+        <svg class="brand-svg" viewBox="0 0 32 32" width="22" height="22" aria-hidden="true" focusable="false">
+          <path d="M4 14c0 8 5.5 12 12 12s12-4 12-12H4z" fill="#D49B41"/>
+          <path d="M2 14h28" stroke="#FAF6EE" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        Genshin Cuisine
+      </h3>
+      <p class="footer-text">
+        A themed local culinary experience bringing the iconic dishes of Teyvat to life, serving realistic, freshly prepared versions of classic in-game meals crafted for local food enthusiasts and diners.
+      </p>
+    </section>
+
+    <!-- Quick Navigation Links -->
+    <nav class="footer-coordinates-nav" aria-label="Quick navigation links">
+      <h3 class="footer-title">Quick Links</h3>
+      <ul class="footer-links-list">
+        <li><a href="#home" class="footer-anchor">Home</a></li>
+        <li><a href="#menu" class="footer-anchor">Menu</a></li>
+        <li><a href="#order-tracker" class="footer-anchor">Order Tracker</a></li>
+        <li><a href="#contact" class="footer-anchor">Catering & Delivery</a></li>
+      </ul>
+    </nav>
+
+    <!-- Active Local Social Channels with Inline SVGs -->
+    <section class="footer-social-section" aria-label="Local social media dispatches">
+      <h3 class="footer-title">Connect With Us</h3>
+      <ul class="social-handles-list">
+        <li class="social-item">
+          <svg class="social-icon-svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" fill="currentColor"/>
+          </svg>
+          <strong class="network-label">The Steambird:</strong>
+          <span class="social-handle">@GenshinCuisine</span>
+        </li>
+        <li class="social-item">
+          <svg class="social-icon-svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <strong class="network-label">Kamera Feed:</strong>
+          <span class="social-handle">@GenshinCuisineEats</span>
+        </li>
+        <li class="social-item">
+          <svg class="social-icon-svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <strong class="network-label">Akasha Live:</strong>
+          <span class="social-handle">@TeyvatKitchen</span>
+        </li>
+        <li class="social-item">
+          <svg class="social-icon-svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15z" fill="none" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <strong class="network-label">Yae Gazette:</strong>
+          <span class="social-handle">@InazumaFlavors</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Fictional Copyright Text -->
+    <footer class="footer-bottom-bar">
+      <p class="copyright-notice">&copy; 2026 Genshin Cuisine. All rights reserved. A themed local culinary experience bringing the classic meals of Teyvat to life.</p>
+    </footer>
+  </footer>
+
+</body>
+</html>
