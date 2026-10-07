@@ -13,6 +13,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
   <!-- Relative File Linking (recipes.js must load before script.js) -->
+  <!-- Apply the saved theme (or the system preference) before first paint, so dark mode never flashes white.
+       The toggle itself lives in script.js. -->
+  <script>
+    (() => {
+      let theme = null;
+      try { theme = localStorage.getItem('genshin-cuisine:theme'); } catch { /* storage unavailable */ }
+      if (theme !== 'dark' && theme !== 'light') theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+
   <link rel="stylesheet" href="./style.css">
   <script src="./recipes.js" defer></script>
   <script src="./script.js" defer></script>
@@ -32,16 +43,26 @@
         <span class="brand-text">Genshin Cuisine</span>
       </a>
 
-      <button type="button" class="mobile-nav-toggle" data-action="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav-menu">
-        <img src="./assets/svg/menu.svg" alt="" width="26" height="26">
-      </button>
-
       <ul id="primary-nav-menu" class="nav-links">
         <li><a href="#/" class="nav-link">Home</a></li>
         <li><a href="#/recipes" class="nav-link">All Recipes</a></li>
         <li><a href="#/favorites" class="nav-link">Favorites</a></li>
         <li><a href="#/about" class="nav-link">About</a></li>
       </ul>
+
+      <button type="button" class="theme-toggle" data-action="theme-toggle" aria-pressed="false" aria-label="Dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <button type="button" class="mobile-nav-toggle" data-action="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav-menu">
+        <img src="./assets/svg/menu.svg" alt="" width="26" height="26">
+      </button>
     </nav>
   </header>
 

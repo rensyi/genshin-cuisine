@@ -79,6 +79,11 @@
   // System 2: Favorites (works normally if storage is unavailable)
   // ==========================================================================
   const FAVORITES_KEY = 'genshin-cuisine:favorites';
+  const THEME_KEY = 'genshin-cuisine:theme';   // also read by the inline script in index.html, before first paint
+
+  const syncThemeToggle = () => {
+    $('.theme-toggle').setAttribute('aria-pressed', String(document.documentElement.dataset.theme === 'dark'));
+  };
 
   const loadFavorites = () => {
     try {
@@ -494,6 +499,16 @@
       renderGrid();
     },
     'clear-filters': clearFilters,
+    'theme-toggle': () => {
+      const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = theme;
+      try {
+        localStorage.setItem(THEME_KEY, theme);
+      } catch {
+        // Storage unavailable: the theme still applies for this visit.
+      }
+      syncThemeToggle();
+    },
     'hero-region': (el) => {
       state.region = el.dataset.value;
       syncFilters();
@@ -568,6 +583,7 @@
   // ==========================================================================
   // Initialization
   // ==========================================================================
+  syncThemeToggle();
   renderHero();
   renderFilters();
   window.addEventListener('hashchange', route);
